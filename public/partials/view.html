@@ -1,0 +1,62 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+                <button type="button" class="navbar-toggler">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->
+<div class="panel-header panel-header-sm view">
+	<div class="header">
+		<h2 class="title">{{model.name}}</h2>
+		<p class="category" ng-if="model.authors.length">
+                       <a ng-repeat="a in model.authors" ui-sref="search/advanced({type:'Author',name:a.name})"  class="">{{a.name}}</a>
+		</p>
+		<p class="category" ng-if="model.rank">
+                       <span>{{model.rank}}</span>
+		</p>
+	</div>
+</div>
+<div class="content view">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="typography-line" ng-if="model.authors.length">
+                        <span>Authors</span> <a ng-repeat="a in model.authors" ui-sref="search/advanced({type:'Author',name:a.name})"  class="tag">{{a.name}}</a>
+                    </div>
+                    <div class="typography-line {{k}}" ng-repeat="(k,n) in model" ng-if="n && k!='name' && k!='authors' && k!='topics'  && k!='file'  && k!='papers'">
+                        <h6><span>{{k}}</span>{{n}}</h6>
+                    </div>
+                    <div class="typography-line" ng-if="model.file && model.file.trim()!=''">
+                        <span>File</span>
+
+                            <a class="" ng-href="/api/storage/{{model.file}}" target="_blank">
+                                <img class="pdf_thumb" ng-src="/api/storage/thumb/{{model.file}}"/>
+                                {{model.file}}
+                            </a>
+                    </div>
+
+                    <div class="typography-line" ng-if="model.papers">
+                        <span>Papers</span> <a ng-repeat="a in model.papers" ui-sref="view({type:'Paper',id:a.id})" class="tag">{{a.name}}</a>
+                    </div>
+
+                    <div class="typography-line" ng-if="model.topics.length">
+                        <span>Topics</span> <a ng-repeat="a in model.topics" ui-sref="search/advanced({type:'Topic',name:a.name})" class="tag">{{a.name}}</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

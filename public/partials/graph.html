@@ -1,0 +1,57 @@
+<div class="graph">
+    <p class="active_node">{{active_node}}</p>
+    <div class="legend">
+        <span class="tag" ng-repeat="(type, color) in palette"  ng-click="toggleNode(type)" ng-class="{hide: visibility[type]} ">
+            <span class="circle" ng-style="{'background-color': color}"></span>
+            <span class="label">{{type}}</span>
+        </span>
+        <span class="tag" ng-click="showSelect=!showSelect" ng-init="showSelect=false">
+           <span class=""><i class="now-ui-icons media-2_sound-wave"></i></span>
+           <span class="label">Collaboration distance</span>
+        </span>
+    <div class="card" ng-show="showSelect">
+        <div class="card-body">
+           <!-- <select ng-model="author1" class="form-control" ng-change="shortestPath()">
+                <option ng-repeat="(id,v) in authors" value="{{v.name}}" ng-if="v.name!=author2">{{v.name}}</option>
+            </select>
+            <select ng-model="author2" class="form-control" ng-change="shortestPath()">
+                <option ng-repeat="(id,v) in authors" value="{{v.name}}" ng-if="v.name!=author1">{{v.name}}</option>
+            </select>-->
+
+            <input type="text" ng-model="author1"
+                   typeahead-focus-first="true"
+                   placeholder="Author 1"
+                   data-typeahead-min-length="0"
+                   typeahead-editable="false"
+                   typeahead-on-select="shortestPath()"
+                   uib-typeahead="n for n in autocomplete($viewValue)"
+                   class="form-control">
+
+            <input type="text" ng-model="author2"
+                   typeahead-focus-first="true"
+                   placeholder="Author 2"
+                   data-typeahead-min-length="0"
+                   typeahead-editable="false"
+                   typeahead-on-select="shortestPath()"
+                   uib-typeahead="n for n in autocomplete($viewValue)"
+                   class="form-control">
+
+            <p ng-show="author1 && author2 && distanceShown">There {{distance}} degree of separation between {{author1}} and {{author2}}</p>
+<!--
+            <button type="button" ng-click="shortestPath()"> $scope.shortestPath()</button>
+-->
+        </div>
+    </div>
+
+
+
+    </div>
+<vis-network data="data" options="options"></vis-network>
+</div>
+
+<style>
+    /*quick fix*/
+    footer {
+        display: none;
+    }
+</style>

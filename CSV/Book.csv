@@ -1,0 +1,5 @@
+nodeId:ID(Book);name;date;file
+1;Graph Theory in Memory of G.A. Dirac, Volume 41;1988/12/01
+2;Pattern Recognition;2009/01/01;Pattern_Recognition_2nd_Ed._(2009)_51ea721c.pdf
+3;Pattern Recognition and Machine Learning;2016/01/01;Bishop_-_Pattern_Recognition_and_Machine_Learning_7f7a6d9b.pdf
+4;Functional Programming in Scala;2014/01/01;Functional_Programming_in_Scala_-_Paul_Chiusano,_Runar_Bjarnason_240f4bc5.pdf

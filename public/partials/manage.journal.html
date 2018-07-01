@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-header">
+
+        <h5 class="title">
+            <button type="button" class="btn btn-round btn-default btn-simple btn-icon " ng-click="goToList()">
+                <i class="now-ui-icons arrows-1_minimal-left"></i>
+            </button>
+            Journal
+        </h5>
+    </div>
+    <ng-form name="f">
+
+    <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" ng-blur="validate()" placeholder="Name" ng-model="model.name" autocomplete="off">
+                        <div class="alert alert-danger" ng-show="!validated && !f.name.$pristine">
+                            <span><b> Error - </b> There is already a Topic with this name</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Issue number</label>
+                        <input type="text" class="form-control" placeholder="Issue number" ng-model="model.number">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>ISBN</label>
+                        <input type="text" class="form-control" placeholder="ISBN" ng-model="model.isbn">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Publication Date</label>
+                        <input type="date" class="form-control" ng-model="model._date">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Papers</label>
+                        <tags-input ng-model="model.papers" class="form-control"
+                                    display-property="name"
+                                    key-property="name"
+                                    onInvalidTag="{alert('1')}"
+                                    replace-spaces-with-dashes="false"
+                                    placeholder="Add an Paper"
+                        >
+                            <auto-complete source="autocomplete.Paper($query)" min-length=1></auto-complete>
+                        </tags-input>
+                    </div>
+                </div>
+            </div>
+            <topics/>
+
+            <notes/>
+
+            <file-upload/>
+
+
+
+    </div>
+        <div class="card-footer text-muted">
+            <div class="pull-left">
+                <input type="button" ng-disabled="!validated" class="btn btn-previous btn-fill btn-default btn-wd" name="submit" value="Submit"
+                       ng-click="submit()">
+            </div>
+        </div>
+    </ng-form>
+</div>

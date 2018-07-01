@@ -1,0 +1,50 @@
+controllare ::: CREATE CONSTRAINT ON (p:Person) ASSERT p.id IS UNIQUE;
+
+
+
+
+
+_________________________________________________________________________________________________________________________________________________________
+
+LOAD CSV WITH HEADERS FROM "file:///Paper.csv" AS r FIELDTERMINATOR ';'
+CREATE (p:Paper {
+  id: toInteger(r.`id:ID(Paper)`),
+  name: r.name,
+  date: toInteger(r.`date:int`)
+});
+
+
+LOAD CSV WITH HEADERS FROM "file:///Book.csv" AS r FIELDTERMINATOR ';'
+CREATE (p:Book {
+  id: toInteger(r.`id:ID(Book)`),
+  name: r.name,
+  date: toInteger(r.`date:int`)
+});
+
+
+// ------------------------------------------------------
+// Author-[:HAS_WRITTEN]->Paper
+
+LOAD CSV WITH HEADERS FROM "file:///Author_HAS_WRITTEN_Paper.csv" AS r FIELDTERMINATOR ';'
+MERGE (a:Author {name: r.name})
+WITH a AS a, r AS r
+MATCH (g:Paper {id: toInteger(r.`:END_ID(Paper)`)})
+CREATE (a)-[:HAS_WRITTEN]->(g);
+
+// Author-[:HAS_WRITTEN]->Book
+
+LOAD CSV WITH HEADERS FROM "file:///Author_HAS_WRITTEN_Book.csv" AS r FIELDTERMINATOR ';'
+MERGE (a:Author {name: r.name})
+WITH a AS a, r AS r
+MATCH (g:Book {id: toInteger(r.`:END_ID(Book)`)})
+CREATE (a)-[:HAS_WRITTEN]->(g);
+
+
+// Paper-[:HAS_KEYWORD]->Topic
+
+LOAD CSV WITH HEADERS FROM "file:///Paper_HAS_KEYWORD_Topic.csv" AS r FIELDTERMINATOR ';'
+MATCH (a:Paper {id: toInteger(r.`:START_ID(Paper)`)})
+WITH a AS a, r AS r
+MERGE (t:Topic {name:r.topic})
+CREATE (a)-[:HAS_KEYWORD]->(t);
+

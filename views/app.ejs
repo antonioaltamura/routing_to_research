@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include blocks/head.ejs %>
+</head>
+
+<body class="" ng-app="RtR">
+  <div class="wrapper ">
+    <% include blocks/sidebar.ejs %>
+    <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
+ <div class="main-panel">
+      <ui-view></ui-view>
+      <% include blocks/footer.ejs %>
+    </div>
+</perfect-scrollbar>
+
+	
+  </div>
+  <!--   Core JS Files   -->
+  <script src="/js/core/jquery.min.js"></script>
+  <script src="/js/core/popper.min.js"></script>
+  <script src="/js/core/bootstrap.min.js"></script>
+  <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
+</body>
+
+</html>

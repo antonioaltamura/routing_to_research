@@ -1,0 +1,101 @@
+<div class="card">
+    <div class="card-header">
+
+        <h5 class="title">
+            <button type="button" class="btn btn-round btn-default btn-simple btn-icon " ng-click="goToList()">
+                <i class="now-ui-icons arrows-1_minimal-left"></i>
+            </button>
+            Paper
+        </h5>
+    </div>
+    <ng-form name="f">
+
+    <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Title</label>
+
+                        <input type="text" name="name" class="form-control" placeholder="title" ng-model="model.name" ng-blur="validate()" autocomplete="off"
+                              ng-keyup="onTitleKeyUp()" ng-down="onTitleKeyDown()"  >
+                        <div class="alert alert-danger" ng-show="!validated && !f.name.$pristine">
+                            <span><b> Error - </b> There is already a Paper with this name</span>
+                        </div>
+
+
+                        <div ng-show="similarTitlesShow && similarTitles.length">
+                            <div class="alert alert-warning alert-with-icon" data-notify="container">
+                                <span data-notify="icon" class="now-ui-icons ui-1_bell-53"></span>
+                                <span data-notify="message">There are similar titles. Are you sure you're not adding the same paper?</span>
+                                <ul class="similarTitles">
+                                    <li ng-repeat="n in similarTitles">{{n}}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Authors</label>
+                        <tags-input ng-model="model.authors" class="form-control tags-input-form-field"
+                                    display-property="name"
+                                    key-property="name"
+                                    add-on-paste="true"
+                                    onInvalidTag="{alert('1')}"
+                                    replace-spaces-with-dashes="false"
+                                    placeholder="Add an author"
+                        >
+                            <auto-complete source="autocomplete.Author($query)" min-length=1></auto-complete>
+                        </tags-input>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>DOI</label>
+                        <input type="text" class="form-control" placeholder="DOI" ng-model="model.doi">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Publication Date</label>
+                        <input type="date" class="form-control" ng-model="model._date">
+                    </div>
+                </div>
+            </div>
+
+            <topics/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Abstract</label>
+                        <textarea rows="3" cols="80" class="form-control" ng-model="model.abstract"
+                                  placeholder="Abstract"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <notes/>
+
+            <file-upload />
+
+
+
+    </div>
+
+        <div class="card-footer text-muted">
+            <div class="pull-left">
+                <input type="button" ng-disabled="!validated" class="btn btn-previous btn-fill btn-default btn-wd" name="submit" value="Submit"
+                       ng-click="submit()">
+            </div>
+        </div>
+    </ng-form>
+</div>

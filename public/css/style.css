@@ -1,0 +1,435 @@
+/*****************************
+            SIDEBAR
+*****************************/
+.logo {
+    text-align: center
+}
+
+.logo img {
+    width: 90px
+}
+
+/*****************************
+            TEMPLATE FIX
+*****************************/
+.main-panel .content {
+    padding: 0 30px 30px;
+  /*  min-height: calc(100vh - 256px);*/
+    margin-top: -30px;
+}
+
+.table-responsive {
+    overflow: auto;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.sidebar[data-color="blue"]:after,
+.off-canvas-sidebar[data-color="blue"]:after {
+    background: #101f48;
+}
+
+.sidebar[data-color="blue"] .nav li.active > a,
+.off-canvas-sidebar[data-color="blue"] .nav li.active > a {
+    color: #101f48;
+}
+
+.sidebar[data-color="blue"] .nav li.active > a i,
+.off-canvas-sidebar[data-color="blue"] .nav li.active > a i {
+    color: #101f48;
+}
+
+.btn-primary {
+    background-color: #101f48;
+    color: #FFFFFF;
+}
+
+.card-stats .icon {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 15px;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.info .icon > i {
+    font-size: 2.3em;
+}
+
+.info .info-title {
+    margin: 15px 0 5px;
+    padding: 0 15px;
+    color: #2c2c2c;
+    font-weight: 700;
+}
+
+.card-stats .statistics .stats-title {
+    margin-bottom: 5px;
+    color: #9a9a9a;
+    font-weight: 400;
+}
+
+
+/*****************************
+            HOME PAGE
+*****************************/
+.home-graph {
+    position: static;
+    overflow: visible;
+}
+
+.home-graph-container {
+    height: 380px
+}
+
+.panel-header-lg {
+
+    height: 470px;
+}
+
+/*****************************
+            MANAGE PAGE
+*****************************/
+
+.actionButtons {
+    width: 292px;
+}
+
+
+.checkFileOk:before {
+    font-size: 40px;
+    vertical-align: middle;
+    color: green;
+    padding-right: 10px;
+}
+
+.similarTitles li {
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 0;
+}
+
+.drop-zone {
+    margin: 10px 0;
+    border: dotted 3px lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    font-size: 18px;
+}
+
+.status-icon {
+    font-size: 25px !important;
+    font-weight: bold;
+}
+
+.status-icon .green {
+    color: green
+}
+
+.status-icon .orange {
+    color: orange
+}
+
+.status-icon .red {
+    color: red
+}
+
+.card-wizard .choice {
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.card-wizard .choice .icon {
+    display: block;
+}
+
+.card-wizard .choice input[type=checkbox], .card-wizard .choice input[type=radio] {
+    position: absolute;
+    left: -10000px;
+    z-index: -1;
+}
+
+.card-wizard[data-color=primary] .choice .icon.active, .card-wizard[data-color=primary] .choice:hover .icon {
+    border-color: #f96332;
+    color: #f96332;
+}
+
+.card-wizard .choice .icon.active, .card-wizard .choice:hover .icon {
+    border-color: #2ca8ff;
+}
+
+.card-wizard .choice .icon {
+    text-align: center;
+    vertical-align: middle;
+    height: 116px;
+    width: 116px;
+    border-radius: 50%;
+    color: #888;
+    margin: 0 auto 20px;
+    border: 1px solid #e3e3e3;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+}
+
+.card-wizard .choice i {
+    font-size: 30px;
+    line-height: 116px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.now-ui-icons {
+    display: inline-block;
+    font: normal normal normal 14px/1 Nucleo Outline;
+    font-size: inherit;
+    speak: none;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*****************************
+            SEARCH PAGE
+*****************************/
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #101f48;
+    outline: 0;
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+[uib-typeahead-popup].dropdown-menu {
+    width: 100%;
+}
+
+.results .ca.main-panel .contentrd:hover {
+    background: #f5f5f5;
+}
+
+.card-title .nav-pills {
+    justify-content: center;
+}
+
+.results .card .typeIcon {
+    color: #888;
+    font-size: 50px;
+}
+
+/*****************************
+            GRAPH PAGE
+*****************************/
+.graph {
+    height: 100vh;
+}
+
+.vis-network {
+    background: #ffffff; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #ffffff 54%, #ffffff 54%, #c9c9c9 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #ffffff 54%, #ffffff 54%, #c9c9c9 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #ffffff 54%, #ffffff 54%, #c9c9c9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#c9c9c9', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+    height: 100%
+}
+
+.graph .active_node {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    margin: 4px 575px 0 15px;
+    font-size: 26px;
+    color: grey;
+    line-height: 1;
+}
+
+.graph .legend {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    font-size: 13px;
+    width: 575px;
+}
+
+.legend .tag i {
+    font-size: 17px;
+}
+
+.legend .tag .label {
+    display: inline-block;
+    vertical-align: super;
+}
+
+.legend .circle {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 2px 2px 0 0;
+}
+
+/*****************************
+            VIEW PAGE
+*****************************/
+.view .abstract h6 {
+    text-transform: none;
+    line-height: 1.5;
+}
+
+.view.panel-header {
+    height: inherit;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.view.panel-header .header .category {
+    max-width: inherit;
+    color: #fff
+}
+
+.view.panel-header .header .title {
+    margin-bottom: 10px;
+}
+
+.view.panel-header .header .category a {
+    padding-right: 15px
+}
+
+.pdf_thumb {
+    max-width: 200px;
+    max-height: 260px;
+    display: block;
+    box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.5);
+    margin: 10px 0;
+}
+
+.results .pdf_thumb {
+    margin: 0 auto;
+}
+
+.typography-line {
+    padding-left: 25%;
+    margin-bottom: 35px;
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.typography-line span {
+    color: #c0c1c2;
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    left: 0;
+    position: absolute;
+    width: 260px;
+    text-transform: none;
+}
+
+.tag:hover, .tag.hide {
+    text-decoration: none;
+    color: #101f48;
+    background-color: #fff;
+    border: 1px solid #101f48
+
+}
+
+.tag {
+    border: 1px solid #fff;
+    background-color: #101f48;
+    color: #fff;
+    cursor: pointer;
+    margin: 0px 3px 5px 0;
+    position: relative;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: .75em;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 1.5em;
+    padding-left: .8em;
+}
+
+/*****************************
+            ngTagsInput
+*****************************/
+tags-input .autocomplete .suggestion-item {
+    font-size: 14px;
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    color: #000;
+    background-color: #fff;
+}
+tags-input .autocomplete .suggestion-item.selected em {
+    background-color: transparent;
+}
+tags-input .autocomplete .suggestion-item.selected {
+    background-color: #101f48;
+}
+tags-input .host {
+    margin: 0 15px 0 0px
+}
+
+tags-input .tags .input {
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    margin: 0
+
+}
+
+.form-control.tags-input-form-field {
+    padding: 7px 10px 2px 10px;
+}
+tags-input .tags .tag-item {
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    height: inherit;
+    border: 1px solid #fff;
+    background: #101f48;
+    color: #fff;
+    cursor: pointer;
+    margin: 0px 3px 5px 0;
+    position: relative;
+    padding: 3px 8px 0 .8em;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 1.5em;
+}
+tags-input .tags .tag-item .remove-button {
+    color: #ffffff;
+}
+tags-input .tags .tag-item.selected {
+    background: #ff5c5c;
+}
+tags-input .tags {
+    border: none;
+    box-shadow: none;
+}
+
+tags-input .tags.focused {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

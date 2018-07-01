@@ -1,0 +1,172 @@
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+                <button type="button" class="navbar-toggler">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <p class="navbar-brand">Manage data</p>
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->
+<div class="panel-header panel-header-sm">
+</div>
+<div class="content">
+    <div class="wizard-container">
+        <div class="card card-wizard active" data-color="blue" id="wizardProfile">
+            <form action="" method="" novalidate="novalidate">
+                <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+
+                <div class="card-header text-center" data-background-color="orange">
+                </div>
+
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account">
+                            <h5 class="info-text"> Select an item</h5>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12">
+                                    <div class="row flex-center">
+                                        <div class="col-sm-2">
+                                            <div class="choice active" data-toggle="wizard-checkbox">
+                                                <a class="icon" ng-class="{'active': model.type=='Author'}"
+                                                   ui-sref="manage/list({type:'Author'})">
+                                                    <i class="now-ui-icons users_single-02"></i>
+                                                </a>
+                                                <h6>Author</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="choice" data-toggle="wizard-checkbox">
+                                                <a class="icon" ng-class="{'active': model.type=='Paper'}"
+                                                   ui-sref="manage/list({type:'Paper'})">
+                                                <i class="now-ui-icons education_paper"></i>
+                                                </a>
+                                                <h6>Paper</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="choice" data-toggle="wizard-checkbox">
+                                                <a class="icon" ng-class="{'active': model.type=='Journal'}"
+                                                   ui-sref="manage/list({type:'Journal'})">
+                                                <i class="now-ui-icons files_single-copy-04"></i>
+                                                </a>
+                                                <h6>Journal issue</h6>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="choice" data-toggle="wizard-checkbox">
+                                                <a class="icon" ng-class="{'active': model.type=='Book'}"
+                                                   ui-sref="manage/list({type:'Book'})">
+                                                    <i class="now-ui-icons education_agenda-bookmark"></i>
+                                                </a>
+                                                <h6>Book</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="choice" data-toggle="wizard-checkbox">
+                                                <a class="icon" ng-class="{'active': model.type=='Topic'}"
+                                                   ui-sref="manage/list({type:'Topic'})">
+                                                    <i class="now-ui-icons business_bulb-63"></i>
+                                                </a>
+                                                <h6>Topic</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" ng-show="model.type && !edit_mode">
+                                        <div class="col-md-12">
+
+
+                                            <div class="card" ng-show="data.length">
+                                                <div class="card-header">
+                                                    <h4 class="card-title"> {{model.type}}</h4>
+
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive table-hover">
+                                                        <table class="table">
+                                                            <thead class=" text-primary">
+                                                            <tr>
+                                                                <th ng-repeat="h in dataHeader(model.type)"> {{h}}</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="tr in data">
+                                                                <td>{{tr.id}}</td>
+                                                                <td>{{tr.name}}</td>
+                                                                <td>{{tr.date}}</td>
+                                                                <td>{{tr.doi}}</td>
+                                                                <td class="actionButtons">
+                                                                    <button type="button" class="btn btn-primary" ng-click="goToView(model.type,tr.id)">
+                                                                        <i class="now-ui-icons education_paper"></i> View
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-primary" ng-click="edit(tr.id)">
+                                                                        <i class="now-ui-icons education_paper"></i> Edit
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-primary" ng-click="delete(tr.id)">
+                                                                        <i class="now-ui-icons ui-1_simple-remove"></i> Delete
+                                                                    </button>
+                                                                    </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card" ng-show="!data.length">
+                                                <div class="card-header">
+                                                    <h4 class="card-title"> No {{model.type}} </h4>
+
+                                                </div>
+                                            </div>
+
+                                            <button type="button" class="btn btn-primary btn-lg btn-round" ng-click="edit_mode=true">
+                                                <i class="now-ui-icons education_paper"></i> Add a new {{model.type}}
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="model.type && edit_mode">
+                                        <div ng-switch="model.type" class="col-md-12">
+                                            <div ng-switch-when="Author" class="slide-animate">
+                                                <div ng-include="'partials/manage.author.html'"></div>
+                                            </div>
+                                            <div ng-switch-when="Paper" class="slide-animate">
+                                                <div ng-include="'partials/manage.paper.html'"></div>
+                                            </div>
+                                            <div ng-switch-when="Journal" class="slide-animate">
+                                                <div ng-include="'partials/manage.journal.html'"></div>
+                                            </div>
+                                            <div ng-switch-when="Book" class="slide-animate">
+                                                <div ng-include="'partials/manage.book.html'"></div>
+                                            </div>
+                                            <div ng-switch-when="Topic" class="slide-animate">
+                                                <div ng-include="'partials/manage.topic.html'"></div>
+                                            </div>
+                                            <div ng-switch-default>Error detecting data-model</div>
+                                        </div>
+                                    </div>
+                                   model {{model | json}} edit_mode {{edit_mode}}
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-footer">
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-header">
+
+        <h5 class="title">
+            <button type="button" class="btn btn-round btn-default btn-simple btn-icon " ng-click="goToList()">
+                <i class="now-ui-icons arrows-1_minimal-left"></i>
+            </button>
+            Author
+        </h5>
+    </div>
+    <ng-form name="f">
+    <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" ng-blur="validate()" placeholder="Name" ng-model="model.name" autocomplete="off">
+                        <div class="alert alert-danger" ng-show="!validated && !f.name.$pristine">
+                            <span><b> Error - </b> There is already a Author with this name</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Birthdate</label>
+                        <input type="date" class="form-control" ng-model="model._birthdate">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                        <label>Rank</label>
+                        <input type="text" class="form-control" ng-model="model.rank">
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Department</label>
+                        <input type="text" class="form-control" ng-model="model.department">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea rows="3" cols="80" class="form-control" ng-model="model.description"
+                                  placeholder="Description"></textarea>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <div class="card-footer text-muted">
+        <div class="pull-left">
+            <input type="button" ng-disabled="!validated" class="btn btn-previous btn-fill btn-default btn-wd" name="submit" value="Submit"
+                   ng-click="submit()">
+        </div>
+    </div>
+    </ng-form>
+</div>

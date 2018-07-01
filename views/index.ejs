@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include blocks/head.ejs %>
+<script src="js/lib/particles.min.js"></script>
+
+    <style>
+        /* =============================================================================
+   HTML5 CSS Reset Minified - Eric Meyer
+   ========================================================================== */
+
+        html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+        body{line-height:1}
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+        nav ul{list-style:none}
+        blockquote,q{quotes:none}
+        blockquote:before,blockquote:after,q:before,q:after{content:none}
+        a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;text-decoration:none}
+        mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+        del{text-decoration:line-through}
+        abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+        table{border-collapse:collapse;border-spacing:0}
+        hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+        input,select{vertical-align:middle}
+        li{list-style:none}
+
+
+        /* =============================================================================
+           My CSS
+           ========================================================================== */
+
+        /* ---- base ---- */
+
+        html,body{
+            width:100%;
+            height:100%;
+            background:#111;
+        }
+
+        html{
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        canvas{
+            display:block;
+            vertical-align:bottom;
+        }
+        #particles-js{
+            width: 100%;
+            height: 100%;
+            background-color: #101f48;
+            background-image: url('/img/yale_library.JPG');
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+        }
+        #splash{
+            position:absolute;
+            background: #101f48;
+            width: 250px;
+            height: 250px;
+            left: calc(50% - 125px);
+            top: calc(50% - 125px);
+            -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.75);
+            text-align: center;
+        }
+
+        body {
+            font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+        }
+
+
+        #splash img {
+            position:absolute;
+            left:0;
+            -webkit-transition: opacity 0.5s ease-in-out;
+            -moz-transition: opacity 0.5s ease-in-out;
+            -o-transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
+        }
+        #splash a{
+            text-transform: uppercase;
+            color: #FFFFFF;
+            font-weight: 400;
+            font-size: 19px;
+
+        }
+        #splash span{
+            display: block;
+            position: absolute;
+            bottom: 0;
+            padding: 0 0 15px 7px;
+        }
+        #splash img.top:hover {
+            opacity:0;
+        }
+    </style>
+</head>
+
+<body class="">
+<div id="splash">
+    <a href="/app#!/">
+    <img class="bottom" src="img/logo_hover.png" />
+    <img class="top" src="img/logo.png" />
+    <span>Routing to Research</span>
+    </a>
+</div>
+<div id="particles-js">
+
+</div>
+<script>
+
+	particlesJS("particles-js", {
+		"particles": {
+			"number": {
+				"value": 150,
+				"density": {
+					"enable": true,
+					"value_area": 868.0624057955
+				}
+			},
+			"color": {
+				"value": "#ffffff"
+			},
+			"shape": {
+				"type": "circle",
+				"stroke": {
+					"width": 0,
+					"color": "#000000"
+				},
+				"polygon": {
+					"nb_sides": 3
+				},
+				"image": {
+					"src": "img/github.svg",
+					"width": 100,
+					"height": 100
+				}
+			},
+			"opacity": {
+				"value": 0.5,
+				"random": false,
+				"anim": {
+					"enable": false,
+					"speed": 1,
+					"opacity_min": 0.1,
+					"sync": false
+				}
+			},
+			"size": {
+				"value": 1,
+				"random": false,
+				"anim": {
+					"enable": false,
+					"speed": 40,
+					"size_min": 0.1,
+					"sync": false
+				}
+			},
+			"line_linked": {
+				"enable": true,
+				"distance": 144.30708547789706,
+				"color": "#ffffff",
+				"opacity": 0.4,
+				"width": 1
+			},
+			"move": {
+				"enable": true,
+				"speed": 4,
+				"direction": "none",
+				"random": false,
+				"straight": false,
+				"out_mode": "bounce",
+				"bounce": false,
+				"attract": {
+					"enable": false,
+					"rotateX": 600,
+					"rotateY": 1200
+				}
+			}
+		},
+		"interactivity": {
+			"detect_on": "window",
+			"events": {
+				"onhover": {
+					"enable": true,
+					"mode": "repulse"
+				},
+				"onclick": {
+					"enable": true,
+					"mode": "push"
+				},
+				"resize": true
+			},
+			"modes": {
+				"grab": {
+					"distance": 400,
+					"line_linked": {
+						"opacity": 1
+					}
+				},
+				"bubble": {
+					"distance": 400,
+					"size": 40,
+					"duration": 2,
+					"opacity": 8,
+					"speed": 3
+				},
+				"repulse": {
+					"distance": 100,
+					"duration": 0.4
+				},
+				"push": {
+					"particles_nb": 4
+				},
+				"remove": {
+					"particles_nb": 2
+				}
+			}
+		},
+		"retina_detect": false
+	});
+
+</script>
+</body>
+
+</html>
