@@ -1,14 +1,12 @@
-var neo4j = require('neo4j-driver').v1;
-
-var fs = require('fs')
-var path = require('path')
-var PDFImage = require("pdf-image").PDFImage;
+let neo4j = require('neo4j-driver').v1,
+	path = require('path'),
+	PDFImage = require("./pdf-image").PDFImage;
 
 
 let utils = {
 	/**
 	 * just an experiment with Tagged Template Literals
-	 * it builds the cypher query string handling optional class instance fields
+	 * it builds the cypher query string handling optional fields
 	 **/
 	queryBuilder: (str, ...args) =>{
 		let result = "";
@@ -39,9 +37,6 @@ let utils = {
 			}
 		});
 		return pdfImage.convertPage(0)
-
-
-
 	},
     toInt : (n) => {
         var aSmallInteger = neo4j.int(n);
@@ -84,8 +79,6 @@ let utils = {
 		return matrix[b.length][a.length];
 	},
 	formatNeo4jArray: (array) => {
-
-    	//TOCO recheck. neo4jdriver on missing match returns [ { name: null, id: null } ]
 		if(!array.length) return [];
     	let r = [];
 		array.forEach((n) => {

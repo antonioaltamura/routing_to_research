@@ -6,7 +6,7 @@ let config = $require('./config'),
 
 module.exports = class Journal {
 
-	constructor({ name, papers=[], topics=[], notes = "", date="", isbn="", number ="", id = null }){
+	constructor({name, papers = [], topics = [], notes = "", date = "", isbn = "", number = "", id = null}) {
 		this.id = id;
 		this.name = name;
 		this.isbn = isbn;
@@ -17,7 +17,7 @@ module.exports = class Journal {
 		this.topics = topics;
 	}
 
-	async save(){
+	async save() {
 		const session = driver.session(neo4j.session.READ);
 		try {
 
@@ -30,7 +30,7 @@ module.exports = class Journal {
 			params.papers = this.papers || [];
 			params.topics = this.topics || [];
 			//node update
-			if(this.id) {
+			if (this.id) {
 				q = `MATCH (n:Journal) WHERE id(n) = toInteger({id})
 				SET n.name = {name}
 				SET n += {data}
@@ -67,10 +67,11 @@ module.exports = class Journal {
 			throw e;
 		}
 	}
+
 	static toObject(record) {
 		try {
 			return {
-				id:λ.toInt(record.get('n').identity),
+				id: λ.toInt(record.get('n').identity),
 				...record.get('n').properties,
 				papers: λ.formatNeo4jArray(record.get("papers")),
 				topics: λ.formatNeo4jArray(record.get("topics"))
@@ -79,13 +80,14 @@ module.exports = class Journal {
 			console.log(e)
 		}
 	}
+
 	static async getByNameContains(str) {
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Journal) WHERE n.name =~ {str}
 			RETURN n, [] AS papers, [] as topics`, {str: `(?i).*${str}.*`});
 			session.close();
-			return res.records.map ( record => new Journal({...Journal.toObject(record)}))
+			return res.records.map(record => new Journal({...Journal.toObject(record)}))
 		} catch (e) {
 			console.warn("Error in Journal model. Rethrowing error");
 			throw e;
@@ -93,11 +95,12 @@ module.exports = class Journal {
 	}
 
 	static async getByName(name) {
-		try{	const session = driver.session(neo4j.session.READ);
+		try {
+			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Journal {name:{name}}})
-			RETURN n, [] AS papers, [] as topics`,{name:name});
+			RETURN n, [] AS papers, [] as topics`, {name: name});
 			session.close();
-			return res.records.map ( record => new Journal({...Journal.toObject(record)}))
+			return res.records.map(record => new Journal({...Journal.toObject(record)}))
 		} catch (e) {
 			console.warn("Error in Journal model. Rethrowing error");
 			throw e;
@@ -107,7 +110,7 @@ module.exports = class Journal {
 	static async getById(id) {
 		if (typeof id !== "number") throw "Check id type";
 
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Journal) WHERE id(n) = toInteger({id})
 						OPTIONAL MATCH (a:Paper)-[:PUBLISHED_IN]->(n)
@@ -115,9 +118,9 @@ module.exports = class Journal {
 						RETURN n,
 						collect(DISTINCT { name:a.name, id:id(a)}) AS papers,
 						collect(DISTINCT { name:b.name, id:id(a)}) AS topics
-			`, {id:id});
+			`, {id: id});
 			session.close();
-			return res.records.map ( record => new Journal({...Journal.toObject(record)}))[0]
+			return res.records.map(record => new Journal({...Journal.toObject(record)}))[0]
 		} catch (e) {
 			console.warn("Error in Journal model. Rethrowing error");
 			console.warn(e)
@@ -126,12 +129,12 @@ module.exports = class Journal {
 	}
 
 	static async getAll() {
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Journal)
 			RETURN n, [] AS papers, [] as topics`);
 			session.close();
-			return res.records.map ( record => new Journal({...Journal.toObject(record)}))
+			return res.records.map(record => new Journal({...Journal.toObject(record)}))
 		} catch (e) {
 			console.warn("Error in Journal model. Rethrowing error");
 			throw e;
@@ -150,6 +153,7 @@ module.exports = class Journal {
 			throw e;
 		}
 	}
+
 	static async count() {
 		try {
 			const session = driver.session(neo4j.session.READ);

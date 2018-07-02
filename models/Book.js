@@ -5,7 +5,7 @@ let config = $require('./config'),
 
 module.exports = class Book {
 
-	constructor({id, name, number="", isbn="", date="", file="", topics = [], authors = []}) {
+	constructor({id, name, number = "", isbn = "", date = "", file = "", topics = [], authors = []}) {
 		this.id = id;
 		this.name = name;
 		this.number = number;
@@ -19,6 +19,7 @@ module.exports = class Book {
 	toString() {
 		return `Book: ${this.name}`;
 	}
+
 	async save() {
 		const session = driver.session(neo4j.session.READ);
 		try {
@@ -32,7 +33,7 @@ module.exports = class Book {
 			params.topics = this.topics || [];
 
 			//node update
-			if(this.id) {
+			if (this.id) {
 				q = `MATCH (n:Book) WHERE id(n) = toInteger({id})
 				SET n.name = {name}
 				SET n += {data}
@@ -74,11 +75,12 @@ module.exports = class Book {
 			throw e;
 		}
 	}
+
 	static toObject(record) {
 		try {
 			//TODO check whats happen if authors is empty
 			return {
-				id:λ.toInt(record.get('n').identity),
+				id: λ.toInt(record.get('n').identity),
 				...record.get('n').properties,
 				authors: λ.formatNeo4jArray(record.get("authors")),
 				topics: λ.formatNeo4jArray(record.get("topics"))
@@ -87,8 +89,9 @@ module.exports = class Book {
 			console.log(e)
 		}
 	}
+
 	static async getByNameContains(str) {
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Book) WHERE n.name =~ {str} RETURN n, [] AS authors, [] as topics`, {str: `(?i).*${str}.*`});
 			session.close();
@@ -100,7 +103,7 @@ module.exports = class Book {
 	}
 
 	static async getByName(name) {
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Book {name:{name}}}) RETURN n, [] AS authors, [] as topics`, {name: name});
 			session.close();
@@ -110,8 +113,9 @@ module.exports = class Book {
 			throw e;
 		}
 	}
+
 	static async query(o) {
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Book ${util.inspect(o)})
 			OPTIONAL MATCH (a)-[:HAS_WRITTEN]->(n)
@@ -127,10 +131,11 @@ module.exports = class Book {
 			throw e;
 		}
 	}
+
 	static async getById(id) {
 		if (typeof id !== "number") throw "Check id type";
 
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`
 			MATCH (n:Book) WHERE id(n) = toInteger({id})
@@ -152,8 +157,8 @@ module.exports = class Book {
 		}
 	}
 
-	static async getAll(next) {
-		try{
+	static async getAll() {
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Book)
 			RETURN n, [] AS authors, [] as topics`);
@@ -178,6 +183,7 @@ module.exports = class Book {
 			throw e;
 		}
 	}
+
 	static async count() {
 		try {
 			const session = driver.session(neo4j.session.READ);
@@ -190,28 +196,30 @@ module.exports = class Book {
 			throw e;
 		}
 	}
+
 	static async getByTopic(topic) {
 		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Book)-[r:HAS_KEYWORD]->(t:Topic {name: {name}})
-				RETURN n, [] AS authors, [] as topics`, {name:topic});
+				RETURN n, [] AS authors, [] as topics`, {name: topic});
 			session.close();
 			return res.records.map(record => new Book(Book.toObject(record)))
 
-		} catch(e) {
+		} catch (e) {
 			console.warn("Error getByTopic Book. Rethrowing error");
 			console.log(e)
 			throw e;
 		}
 	}
+
 	static async getByAuthor(author) {
 		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (a:Author {name:{name}})-[r:HAS_WRITTEN]->(n:Book)
-			RETURN n, [] AS authors, [] as topics`, {name:author});
+			RETURN n, [] AS authors, [] as topics`, {name: author});
 			session.close();
 			return res.records.map(record => new Book(Book.toObject(record)))
-		} catch(e) {
+		} catch (e) {
 			console.warn("Error getByAuthor Book. Rethrowing error");
 			console.log(e)
 			throw e;

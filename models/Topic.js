@@ -6,20 +6,22 @@ let config = $require('./config'),
 
 module.exports = class Topic {
 
-	constructor({name, id = null}){
+	constructor({name, id = null}) {
 		this.id = id;
 		this.name = name;
 	}
-	toString(){
+
+	toString() {
 		return `Topic: ${this.name}`;
 	}
-	async save(){
+
+	async save() {
 		const session = driver.session(neo4j.session.READ);
 		try {
 			//node update
 			let q;
 			let params = {id: this.id, name: this.name};
-			if(this.id) {
+			if (this.id) {
 				q = `MATCH (n:Topic) WHERE id(n) = toInteger({id}) SET n.name = {name}`;
 			}
 			//node creation
@@ -35,17 +37,20 @@ module.exports = class Topic {
 			throw e;
 		}
 	}
+
 	static toObject(record) {
 		return {
-			id:λ.toInt(record.get("id")),
-			name:record.get("name")
+			id: λ.toInt(record.get("id")),
+			name: record.get("name")
 		}
 	}
+
 	static async getByNameContains(str) {
-		try{	const session = driver.session(neo4j.session.READ);
+		try {
+			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Topic) WHERE n.name =~ {str} RETURN n.name AS name, id(n) AS id`, {str: `(?i).*${str}.*`});
 			session.close();
-			return res.records.map ( record => new Topic(Topic.toObject(record)))
+			return res.records.map(record => new Topic(Topic.toObject(record)))
 		} catch (e) {
 			console.warn("Error in Paper model. Rethrowing error");
 			throw e;
@@ -53,11 +58,11 @@ module.exports = class Topic {
 	}
 
 	static async getByName(name) {
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
-			let res = await session.run(`MATCH (a:Topic {name:{name}}}) RETURN DISTINCT n.name AS name, id(n) AS id`,{name:name});
+			let res = await session.run(`MATCH (a:Topic {name:{name}}}) RETURN DISTINCT n.name AS name, id(n) AS id`, {name: name});
 			session.close();
-			return res.records.map ( record => new Topic(Topic.toObject(record)))
+			return res.records.map(record => new Topic(Topic.toObject(record)))
 		} catch (e) {
 			console.warn("Error in Paper model. Rethrowing error");
 			throw e;
@@ -67,22 +72,23 @@ module.exports = class Topic {
 	static async getById(id) {
 		if (typeof id !== "number") throw "Check id type";
 
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
-			let res = await session.run(`MATCH (n:Topic) WHERE id(n) = toInteger({id}) RETURN DISTINCT n.name AS name, id(n) AS id`, {id:id});
+			let res = await session.run(`MATCH (n:Topic) WHERE id(n) = toInteger({id}) RETURN DISTINCT n.name AS name, id(n) AS id`, {id: id});
 			session.close();
-			return res.records.map ( record => new Topic(Topic.toObject(record)))[0]
+			return res.records.map(record => new Topic(Topic.toObject(record)))[0]
 		} catch (e) {
 			console.warn("Error in Paper model. Rethrowing error");
 			throw e;
 		}
 	}
 
-	static async getAll(next) {
-		try{	const session = driver.session(neo4j.session.READ);
+	static async getAll() {
+		try {
+			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Topic) RETURN DISTINCT n.name AS name, id(n) AS id`);
 			session.close();
-			return res.records.map ( record => new Topic(Topic.toObject(record)))
+			return res.records.map(record => new Topic(Topic.toObject(record)))
 		} catch (e) {
 			console.warn("Error in Paper model. Rethrowing error");
 			throw e;
@@ -101,6 +107,7 @@ module.exports = class Topic {
 			throw e;
 		}
 	}
+
 	static async count() {
 		try {
 			const session = driver.session(neo4j.session.READ);

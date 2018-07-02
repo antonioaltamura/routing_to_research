@@ -4,8 +4,7 @@ let config = $require('./config'),
 	λ = require('./../utils');
 
 
-
-module.exports = class Author{
+module.exports = class Author {
 
 	constructor({id, name, birthdate, description, rank, department}) {
 		this.id = id;
@@ -31,7 +30,7 @@ module.exports = class Author{
 			if (this.department) params.data.department = this.department;
 
 			//node update
-			if(this.id) {
+			if (this.id) {
 				q = `MATCH (n:Author) WHERE id(n) = toInteger({id})
 				SET n.name = {name}
 				SET n += {data}`;
@@ -51,15 +50,16 @@ module.exports = class Author{
 			throw e;
 		}
 	}
+
 	static toObject(record) {
 		return {
-			id:λ.toInt(record.get('n').identity),
+			id: λ.toInt(record.get('n').identity),
 			...record.get('n').properties
 		}
 	}
 
 	static async getByNameContains(str) {
-		try{
+		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Author) WHERE n.name =~ {str} RETURN n`, {str: `(?i).*${str}.*`});
 			session.close();
@@ -72,7 +72,8 @@ module.exports = class Author{
 	}
 
 	static async getByName(name) {
-		try{	const session = driver.session(neo4j.session.READ);
+		try {
+			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (a:Author {name:{name}}}) RETURN DISTINCT n`, {name: name});
 			session.close();
 			return res.records.map(record => new Author(Author.toObject(record)))
@@ -85,7 +86,8 @@ module.exports = class Author{
 	static async getById(id) {
 		if (typeof id !== "number") throw "Check id type";
 
-		try{	const session = driver.session(neo4j.session.READ);
+		try {
+			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Author) WHERE id(n) = toInteger({id}) RETURN n`, {id: id});
 			session.close();
 			return res.records.map(record => new Author(Author.toObject(record)))[0]
@@ -95,8 +97,9 @@ module.exports = class Author{
 		}
 	}
 
-	static async getAll(next) {
-		try{	const session = driver.session(neo4j.session.READ);
+	static async getAll() {
+		try {
+			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Author) RETURN DISTINCT n`);
 			session.close();
 			return res.records.map(record => new Author(Author.toObject(record)))
@@ -118,6 +121,7 @@ module.exports = class Author{
 			throw e;
 		}
 	}
+
 	static async count() {
 		try {
 			const session = driver.session(neo4j.session.READ);

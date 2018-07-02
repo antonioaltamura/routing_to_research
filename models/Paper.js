@@ -77,6 +77,7 @@ module.exports = class Paper {
 			throw e;
 		}
 	}
+
 	static toObject(record) {
 		try {
 			return {
@@ -154,7 +155,7 @@ module.exports = class Paper {
 		}
 	}
 
-	static async getAll(next) {
+	static async getAll() {
 		try {
 			const session = driver.session(neo4j.session.READ);
 			let res = await session.run(`MATCH (n:Paper)

@@ -1,0 +1,50 @@
+{
+  "_from": "pdf-image",
+  "_id": "pdf-image@2.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-RyB8f/Khw8wZt2xXGWtQu/5ZyKl4pzNSi9/dnYNJOuGnxRiZvmUVmz6xmG6Xts53k8ZZaOBjDwoT4jjAVzIoPQ==",
+  "_location": "/pdf-image",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "pdf-image",
+    "name": "pdf-image",
+    "escapedName": "pdf-image",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/pdf-image/-/pdf-image-2.0.0.tgz",
+  "_shasum": "f134296876c3d5aacb6bb5805ad15d0a46775fd5",
+  "_spec": "pdf-image",
+  "_where": "C:\\nodejs\\routing_to_research",
+  "bugs": {
+    "url": "https://github.com/mooz/node-pdf-image/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "es6-promise": "~4.2.4"
+  },
+  "deprecated": false,
+  "description": "Provides an interface to convert PDF's pages to png files in Node.js by using ImageMagick.",
+  "devDependencies": {
+    "chai": "~4.1.2",
+    "mocha": "~5.1.1"
+  },
+  "homepage": "https://github.com/mooz/node-pdf-image#readme",
+  "main": "index.js",
+  "name": "pdf-image",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mooz/node-pdf-image.git"
+  },
+  "scripts": {
+    "test": "mocha tests/*"
+  },
+  "version": "2.0.0"
+}
