@@ -1,9 +1,12 @@
+/**
+ * Created by Antonio Altamura on 03/06/2018.
+ */
 let router = require('express').Router(),
 	Journal = $require("models").Journal;
 
 router
 	.get('/', async (req, res, next) => {
-    	res.json(await Journal.getAll());
+    		res.json(await Journal.getAll());
 	})
 	.get('/:id', async (req, res, next) => {
 		let r = await Journal.getById(parseInt(req.params.id));

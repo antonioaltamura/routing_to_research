@@ -89,7 +89,6 @@ module.exports = class Book {
 	}
 	static toObject(record) {
 		try {
-			//TODO check whats happen if authors is empty
 			return {
 				id:λ.toInt(record.get('n').identity),
 				...record.get('n').properties,

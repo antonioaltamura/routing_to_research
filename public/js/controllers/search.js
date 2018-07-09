@@ -1,7 +1,6 @@
 /**
- * Created by Antonio Altamura on 20/06/2018.
+ * Created by Antonio Altamura on 04/06/2018.
  */
-"use strict";
 
 /**
  * Controller for the simple search by name on all entities

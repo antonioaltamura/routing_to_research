@@ -1,3 +1,6 @@
+/**
+ * Created by Antonio Altamura on 01/06/2018.
+ */
 app.config(['$stateProvider',
     function($stateProvider) {
         $stateProvider

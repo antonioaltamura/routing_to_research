@@ -4,7 +4,7 @@
 "use strict";
 
 /**
- * If Heroku GrapheneDB env vars are defined, use them, otherwise use local config
+ * If Heroku GrapheneDB env vars are defined use them, otherwise use local config
 * */
 module.exports = {
 	bolt: process.env.GRAPHENEDB_BOLT_URL ? process.env.GRAPHENEDB_BOLT_URL : "bolt://localhost:7687",

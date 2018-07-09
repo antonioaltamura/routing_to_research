@@ -1,5 +1,5 @@
 /**
- * Created by Antonio Altamura on 24/04/2016.
+ * Created by Antonio Altamura on 04/06/2018.
  */
 
 app.controller('fileUploadController',["$scope","FileUploader","$http","$window","SweetAlert",function($scope,FileUploader,$http,$window,SweetAlert){

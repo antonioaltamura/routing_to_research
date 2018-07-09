@@ -1,3 +1,6 @@
+/**
+ * Created by Antonio Altamura on 03/06/2018.
+ */
 let router = require('express').Router(),
 	Paper = $require("models").Paper,
 	λ = $require('utils');
@@ -12,8 +15,6 @@ router
 		let title = req.query.q;
 		try {
 			let docs = await Paper.getAll();
-			// TODO doesnt work wtf
-			// let r = docs.filter( d => (Math.max(d.name.length,title.length) / λ.levenshtein(d.name,title)) <= DIFF_THRESHOLD );
 			let rr = []
 			docs.forEach(d => {
 				let len = (Math.max(d.name.length, title.length))

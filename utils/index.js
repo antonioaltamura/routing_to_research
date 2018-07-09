@@ -1,7 +1,10 @@
+/**
+ * Created by Antonio Altamura on 06/06/2018.
+ */
+
 let neo4j = require('neo4j-driver').v1,
 	path = require('path'),
 	PDFImage = require("./pdf-image").PDFImage;
-
 
 let utils = {
 	/**

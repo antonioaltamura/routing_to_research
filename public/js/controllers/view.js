@@ -1,4 +1,7 @@
-"use strict";
+/**
+ * Created by Antonio Altamura on 04/06/2018.
+ */
+
 /**
  * Controller for the detailed view of an Entity with id $stateParams.id
  * **/

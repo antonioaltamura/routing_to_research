@@ -1,3 +1,6 @@
+/**
+ * Created by Antonio Altamura on 03/06/2018.
+ */
 let config = $require('./config'),
 	neo4j = require('neo4j-driver').v1,
 	driver = neo4j.driver(config.bolt, neo4j.auth.basic(config.user, config.password)),

@@ -1,4 +1,8 @@
 /**
+ * Created by Antonio Altamura on 04/06/2018.
+ */
+
+/**
  * Controller for graph visualization
  * **/
 app.controller('graph', ['$scope', '$stateParams', 'api', 'SweetAlert', 'VisDataSet', "$http", function ($scope, $stateParams, api, SweetAlert, VisDataSet, $http) {
@@ -52,15 +56,12 @@ app.controller('graph', ['$scope', '$stateParams', 'api', 'SweetAlert', 'VisData
 							//console.log($scope.data.edges.get(triple[1].id))
 							let id = triple[1].id
 							let edge = $scope.data.edges.get(id)
-							//$scope.data.nodes.update({id: triple[0].id, color: '#ff383f', width: 3})
 							$scope.data.edges.update({id: triple[1].id, color: {color: '#ff383f'}, width: 5})
 							console.log(triple[1].name)
 						})
 						$scope.distanceShown = true;
 						$scope.distance = res.data.length / 2;
-
 					}
-
 				})
 				.catch(function (e) {
 					console.error(e)

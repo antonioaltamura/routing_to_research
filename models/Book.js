@@ -1,3 +1,6 @@
+/**
+ * Created by Antonio Altamura on 05/06/2018.
+ */
 let config = $require('./config'),
 	neo4j = require('neo4j-driver').v1,
 	driver = neo4j.driver(config.bolt, neo4j.auth.basic(config.user, config.password)),
@@ -78,7 +81,6 @@ module.exports = class Book {
 
 	static toObject(record) {
 		try {
-			//TODO check whats happen if authors is empty
 			return {
 				id: λ.toInt(record.get('n').identity),
 				...record.get('n').properties,

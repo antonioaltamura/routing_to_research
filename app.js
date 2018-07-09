@@ -3,14 +3,10 @@ let createError = require('http-errors'),
     path = require('path'),
     cookieParser = require('cookie-parser'),
 	logger = require('morgan');
-
 global.$require = function(mod){
 	return require(path.join(__dirname, mod));
 };
-
-
 let app = express();
-
 app
 	.set('views', path.join(__dirname, 'views'))
 	.set('view engine', 'ejs')
@@ -32,7 +28,7 @@ app
 	'books',
 	'topics',
 	'autocomplete'
-].map ( r => app.use('/api/' + r, require(path.join(__dirname,'routes','api',r))));
+].map ( r => app.use('/api/' + r, require(path.join(__dirname, 'routes', 'api', r))));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

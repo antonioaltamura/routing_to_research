@@ -1,6 +1,8 @@
+/**
+ * Created by Antonio Altamura on 03/06/2018.
+ */
 let router = require('express').Router(),
 	Book = $require("models").Book;
-
 
 router
 	.get('/', async (req, res, next) => {

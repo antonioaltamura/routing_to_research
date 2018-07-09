@@ -1,3 +1,6 @@
+/**
+ * Created by Antonio Altamura on 04/06/2018.
+ */
 
 /**
  * Controller for the home page (including Hightchart graph)
