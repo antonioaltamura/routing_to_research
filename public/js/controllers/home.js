@@ -9,9 +9,7 @@ app.controller('home', ['$scope', '$stateParams', 'api', function ($scope, $stat
 
 	api.count().then(function (res) {
 		$scope.count = res.data;
-		console.log(res.data)
 		let g = Object.entries(res.data)
-		console.log(g)
 		let labels = ["Author", "Paper", "Journal", "Book", "Topic"];
 		let data = labels.map(label => res.data[label])
 		Highcharts.chart('home-graph-container', {

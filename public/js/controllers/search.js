@@ -17,15 +17,11 @@ app.controller('search', ['$scope', '$stateParams', 'api', '$http', function ($s
 			console.log(e)
 		});
 	}
-	console.log($stateParams)
-
 	$scope.simple = $stateParams
 	$scope.params = $stateParams;
 	$scope.selectType = function () {
 		console.log($scope.q.type)
 		api[$scope.q.type].getAll().then(function (res) {
-			console.log(res)
-			//$scope.results = res.data;
 			$scope.list = res.data;
 		}, function (e) {
 			console.log(e)
@@ -46,10 +42,7 @@ app.controller('search', ['$scope', '$stateParams', 'api', '$http', function ($s
 	}
 
 	$scope.search_advanced = function (type, name) {
-		//console.log("search_advanced ")
-		//console.log($scope.q)
 		api.search_advanced($scope.q.type, $scope.q.name).then(function (res) {
-			console.log(res)
 			$scope.results = res.data;
 		}, function (e) {
 			console.log(e)

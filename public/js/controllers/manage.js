@@ -87,12 +87,10 @@ app.controller('manage', ['$scope', '$stateParams', 'api', 'SweetAlert', "$http"
 		}[type]
 	);
 
-	// loads a list of docuemts
-	//in case of data model doesn't have DOI field there will be just an empty column
+	// loads a list of documents
 	$scope.loadData = function (type) {
 
 		api[type].getAll().then(function (res) {
-			//console.log(res);
 			if (res.data.message === "error") {
 				SweetError("Error", res.data)
 			} else {
@@ -169,9 +167,7 @@ app.controller('manage', ['$scope', '$stateParams', 'api', 'SweetAlert', "$http"
 		let c = 0; //name has been found?
 		api[$scope.model.type].getAll().then(res => {
 			res.data.forEach(doc => {
-				//console.log(doc)
 				if(doc.name === $scope.model.name) {
-					//console.log("name is there!")
 					c = 1;
 				}
 			});
@@ -210,7 +206,6 @@ app.controller('manage', ['$scope', '$stateParams', 'api', 'SweetAlert', "$http"
 			$scope.model.date = $filter('date')(newValue, 'yyyy/MM/dd');
 		} else {
 			delete $scope.model.date
-			//console.log("no _date value")
 		}
 
 	});
@@ -219,7 +214,6 @@ app.controller('manage', ['$scope', '$stateParams', 'api', 'SweetAlert', "$http"
 			$scope.model.birthdate = $filter('date')(newValue, 'yyyy/MM/dd');
 		} else {
 			delete $scope.model.birthdate
-			//console.log("no _birthdate value")
 		}
 
 	});

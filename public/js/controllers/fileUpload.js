@@ -15,7 +15,6 @@ app.controller('fileUploadController',["$scope","FileUploader","$http","$window"
         url: '/api/storage',
         queueLimit:1,
         autoUpload:true,
-        //headers: { 'Authorization': 'Bearer ' + $window['localStorage'].satellizer_token },
     });
     // FILTERS
     uploader.filters.push({

@@ -11,13 +11,6 @@
         </span>
     <div class="card" ng-show="showSelect">
         <div class="card-body">
-           <!-- <select ng-model="author1" class="form-control" ng-change="shortestPath()">
-                <option ng-repeat="(id,v) in authors" value="{{v.name}}" ng-if="v.name!=author2">{{v.name}}</option>
-            </select>
-            <select ng-model="author2" class="form-control" ng-change="shortestPath()">
-                <option ng-repeat="(id,v) in authors" value="{{v.name}}" ng-if="v.name!=author1">{{v.name}}</option>
-            </select>-->
-
             <input type="text" ng-model="author1"
                    typeahead-focus-first="true"
                    placeholder="Author 1"
@@ -36,10 +29,7 @@
                    uib-typeahead="n for n in autocomplete($viewValue)"
                    class="form-control">
 
-            <p ng-show="author1 && author2 && distanceShown">There {{distance}} degree of separation between {{author1}} and {{author2}}</p>
-<!--
-            <button type="button" ng-click="shortestPath()"> $scope.shortestPath()</button>
--->
+            <p ng-show="author1 && author2 && distanceShown">There {{distance > 1 ? 'are' : 'is'}} {{distance}} degree of separation between {{author1}} and {{author2}}</p>
         </div>
     </div>
 
