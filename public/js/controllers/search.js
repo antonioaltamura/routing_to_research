@@ -37,10 +37,6 @@ app.controller('search', ['$scope', '$stateParams', 'api', '$http', function ($s
 				console.log(e)
 			});
 	}
-	$scope.onSelect = function (a, b, c) {
-		console.log(a, b, c)
-	}
-
 	$scope.search_advanced = function (type, name) {
 		api.search_advanced($scope.q.type, $scope.q.name).then(function (res) {
 			$scope.results = res.data;
