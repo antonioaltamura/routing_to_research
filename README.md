@@ -18,7 +18,7 @@
 Just launch
 `yarn start` and open `http://localhost:3000`
 
-**NOTE:** When you upload a pdf in "Routing to Research" the file will be saved in `./public/storage`. The sample pdf files has been removed for copyright reason.
+**NOTE:** When you upload a pdf in "Routing to Research" the file will be saved in `./public/storage`. Sample pdf files has been removed for copyright reason.
 
 **NOTE:** `pdf-image` module has been fixed to works with the current release of ImageMagick for Windows (7.0.8-6).
 In order to work with Linux env you need to edit the Imagemagick command on `utils/pdf-image/index.js` on `#96` and `#104`.
